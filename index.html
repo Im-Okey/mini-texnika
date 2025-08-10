@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Аренда мини-техники</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="css/theme.css" rel="stylesheet">
+    <style type="text/tailwindcss">
+        
+        body {
+            @apply bg-[var(--background-color)] text-[var(--text-primary)] font-sans;
+        }
+        
+        .button_primary {
+            @apply bg-[var(--primary-color)] text-[var(--button-text)] py-2 px-4 rounded-md hover:bg-[var(--primary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors;
+        }
+        
+        .button_secondary {
+            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] py-2 px-4 rounded-md hover:bg-[var(--accent-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors;
+        }
+        
+        .input {
+            @apply bg-[var(--secondary-color)] border border-[var(--border-color)] rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent text-[var(--text-primary)] transition-colors;
+        }
+        
+        .card {
+            @apply bg-[var(--card-bg)] rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-[var(--shadow-color)] transition-all duration-300;
+        }
+        
+        .card-content {
+            @apply p-6;
+        }
+        
+        .card-title {
+            @apply text-xl font-semibold text-[var(--text-primary)] mb-2;
+        }
+        
+        .card-description {
+            @apply text-base text-[var(--text-secondary)];
+        }
+        
+        header {
+            @apply bg-[var(--header-bg)] shadow-sm;
+        }
+        
+        footer {
+            @apply bg-[var(--footer-bg)] border-t border-[var(--border-color)];
+        }
+        
+        .logo-bg {
+            @apply bg-[var(--logo-bg)] rounded-lg;
+        }
+        
+        .nav-link {
+            @apply text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors;
+        }
+        
+        .feature-card {
+            @apply bg-[var(--card-bg)] rounded-lg shadow-md p-6;
+        }
+        
+        .feature-icon {
+            @apply h-8 w-8 text-[var(--primary-color)];
+        }
+        
+        .feature-title {
+            @apply text-lg font-semibold text-[var(--text-primary)];
+        }
+        
+        .feature-description {
+            @apply text-base text-[var(--text-secondary)];
+        }
+        
+
+        .hero-section {
+            @apply relative rounded-lg overflow-hidden min-h-[500px] flex flex-col items-start justify-end p-8 md:p-12;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjwcSfUiZZ9UP4QmkLmyKuwiaEfWGfYmMNflgKZT6toLzAVq5JXPkhPRQYDPn7wdp9tLNT6YgwKBdwaCBaCSMBBKEPcLTA6zSCn0Wc_O4FPxnaRGwWFutfqPZugsRQNj4ATaMu_G0m0B7bwWRpSPSGyWRlDgehcyOnl-vNvQMFZ6qeKUVpoWO-cg9msaWThAdCRKSSlzrZPhMlxrw6tUmpJArreybNrqX_qDTSNGLT74MIpDQ-2QI-X0El5Vqtbe2kHPfXysqwBVaT");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-title {
+            @apply text-white text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4;
+        }
+        
+        .hero-description {
+            @apply text-white/90 text-lg md:text-xl font-normal leading-normal mb-8;
+        }
+        
+        .questions-section {
+            @apply bg-[var(--secondary-color)] py-16 px-8 rounded-lg;
+        }
+
+        .mobile-menu {
+            @apply fixed inset-0 z-40 bg-[var(--background-color)] transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto p-6 !important;
+        }
+        .mobile-menu.active {
+            @apply translate-x-0 !important;
+        }
+
+        .burger-btn {
+            @apply lg:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer;
+        }
+        .burger-line {
+            @apply w-6 h-0.5 bg-[var(--primary-color)] my-1 transition-all duration-300;
+        }
+        .burger-btn.active .burger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger-btn.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .burger-btn.active .burger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+<body>
+<div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+        <header>
+            <div class="container mx-auto flex items-center justify-between whitespace-nowrap px-4 sm:px-6 py-4">
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center justify-center p-2 logo-bg">
+                        <svg class="h-8 w-8 text-[var(--primary-color)]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 12.5V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8.5"></path>
+                            <path d="M16 18h2"></path>
+                            <path d="M12 18h-2"></path>
+                            <path d="M8 18H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4v4Z"></path>
+                        </svg>
+                    </span>
+                    <a href="index.html"><h2 class="text-xl sm:text-2xl font-bold leading-tight tracking-[-0.015em]"><span class="text-[var(--primary-color)]">Аренда</span> мини-техники</h2></a>
+                </div>
+                
+                <button id="burger-button" class="burger-btn lg:hidden" aria-expanded="false" aria-label="Меню">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+                                
+                <nav class="hidden lg:flex items-center gap-4 sm:gap-8">
+                    <a class="nav-link" href="#">Каталог</a>
+                    <a class="nav-link" href="#">Услуги</a>
+                    <a class="nav-link" href="#">О компании</a>
+                    <a class="nav-link" href="#">Контакты</a>
+                </nav>
+                <div class="hidden lg:flex items-center gap-4">
+                    <div class="flex items-center gap-2 mr-2">
+                        <button data-theme="default" class="theme-toggle p-1.5 rounded-full bg-[#d97706] hover:bg-[#b45309] focus:outline-none ring-2 ring-offset-2 ring-[var(--primary-color)]" title="Коричневая тема"></button>
+                        <button data-theme="light-brown" class="theme-toggle p-1.5 rounded-full bg-[#f59e0b] hover:bg-[#d97706] focus:outline-none ring-0" title="Светло-коричневая тема"></button>
+                        <button data-theme="dark-blue" class="theme-toggle p-1.5 rounded-full bg-[#0d7ff2] hover:bg-[#0b6ed8] focus:outline-none ring-0" title="Темно-синяя тема"></button>
+                        <button data-theme="light-blue" class="theme-toggle p-1.5 rounded-full bg-[#60a5fa] hover:bg-[#3b82f6] focus:outline-none ring-0" title="Светло-синяя тема"></button>
+                    </div>
+                    
+                    <a class="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors" href="tel:+375298080706">
+                        <svg class="w-5 h-5 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.298-.083.465a10.47 10.47 0 0 0 5.208 5.208c.167.081.364.052.465-.083l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" fill-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-base font-medium">+375 (29) 808-07-06</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="mobile-menu" class="mobile-menu lg:hidden" aria-hidden="true">
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center gap-4 text-[var(--text-primary)]">
+                        <span class="inline-flex items-center justify-center p-2 logo-bg">
+                            <svg class="h-8 w-8 text-[var(--primary-color)]" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 12.5V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8.5"></path>
+                                <path d="M16 18h2"></path>
+                                <path d="M12 18h-2"></path>
+                                <path d="M8 18H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h4v4Z"></path>
+                            </svg>
+                        </span>
+                        <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]"><span class="text-[var(--primary-color)]">Аренда</span> мини-техники</h2>
+                    </div>
+                    <button id="close-menu" class="text-2xl text-[var(--primary-color)]" aria-label="Закрыть меню">×</button>
+                </div>
+
+                <nav class="flex flex-col gap-6">
+                    <a class="nav-link text-lg sm:text-xl" href="#">Каталог</a>
+                    <a class="nav-link text-lg sm:text-xl" href="#">Услуги</a>
+                    <a class="nav-link text-lg sm:text-xl" href="#">О компании</a>
+                    <a class="nav-link text-lg sm:text-xl" href="#">Контакты</a>
+                </nav>
+                
+                <div class="flex items-center gap-4 mt-8">
+                    <div class="flex items-center gap-2 mr-2">
+                        <button data-theme="default" class="theme-toggle p-2 rounded-full bg-[#d97706] hover:bg-[#b45309] focus:outline-none ring-2 ring-offset-2 ring-[var(--primary-color)]" title="Коричневая тема"></button>
+                        <button data-theme="light-brown" class="theme-toggle p-2 rounded-full bg-[#f59e0b] hover:bg-[#d97706] focus:outline-none ring-0" title="Светло-коричневая тема"></button>
+                        <button data-theme="dark-blue" class="theme-toggle p-2 rounded-full bg-[#0d7ff2] hover:bg-[#0b6ed8] focus:outline-none ring-0" title="Темно-синяя тема"></button>
+                        <button data-theme="light-blue" class="theme-toggle p-2 rounded-full bg-[#60a5fa] hover:bg-[#3b82f6] focus:outline-none ring-0" title="Светло-синяя тема"></button>
+                    </div>
+                    
+                    <a class="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-lg sm:text-xl" href="tel:+375298080706">
+                        <svg class="w-6 h-6 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.298-.083.465a10.47 10.47 0 0 0 5.208 5.208c.167.081.364.052.465-.083l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" fill-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">+375 (29) 808-07-06</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+
+        <main class="container mx-auto px-4 py-8">
+            <section class="mb-16">
+                <div class="hero-section">
+                    <div class="max-w-2xl text-left">
+                        <h1 class="hero-title">Аренда строительной техники</h1>
+                        <p class="hero-description">
+                            Широкий выбор техники для любых задач. Гибкие условия аренды и выгодные цены.
+                        </p>
+                        <button class="button_primary py-3 px-6 text-lg font-bold">
+                            <span class="truncate">Подобрать технику</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[var(--text-primary)] mb-12">Наша техника</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <a class="card" href="excavator.html">
+                        <div class="relative h-56">
+                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/excavator_main.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Мини-экскаватор</h3>
+                            <p class="card-description">Компактные и мощные экскаваторы для работы в ограниченном пространстве.</p>
+                            <div class="mt-4 inline-flex items-center text-blue-600 group">
+                                <span class="mr-2 text-[var(--primary-color)]">Подробнее</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="card" href="pogruzchik.html">
+                        <div class="relative h-56">
+                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/pogruzchik_main.webp">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Мини-погрузчик</h3>
+                            <p class="card-description">Универсальные погрузчики для перемещения грузов на стройплощадке.</p>
+                            <div class="mt-4 inline-flex items-center text-blue-600 group">
+                                <span class="mr-2 text-[var(--primary-color)]">Подробнее</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="card" href="kran.html">
+                        <div class="relative h-56">
+                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/kran_main.jpg">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Эвакуатор-манипулятор с краном</h3>
+                            <p class="card-description">Идеально подходят для погрузочно-разгрузочных работ, монтажа и перевозки.</p>
+                            <div class="mt-4 inline-flex items-center text-blue-600 group">
+                                <span class="mr-2 text-[var(--primary-color)]">Подробнее</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 text-[var(--primary-color)]" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[var(--text-primary)] mb-12">Наши преимущества</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card">
+                        <div class="flex items-center mb-3">
+                            <div class="flex-shrink-0 mr-4">
+                                <svg class="feature-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Гарантия качества</h3>
+                        </div>
+                        <p class="feature-description">Наша техника проходит своевременное ТО и всегда готова к работе.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="flex items-center mb-3">
+                            <div class="flex-shrink-0 mr-4">
+                                <svg class="feature-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581a.75.75 0 0 0 1.06 0l5.859-5.859a.75.75 0 0 0 0-1.06l-9.58-9.581A2.25 2.25 0 0 0 9.568 3Z"></path>
+                                    <path d="M6 9h.008v.008H6V9Z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Гибкие условия</h3>
+                        </div>
+                        <p class="feature-description">Предлагаем аренду на любой срок, с оператором или без.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="flex items-center mb-3">
+                            <div class="flex-shrink-0 mr-4">
+                                <svg class="feature-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 1-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Доступные цены</h3>
+                        </div>
+                        <p class="feature-description">Лучшие цены на аренду и скидки для постоянных клиентов.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="questions-section">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-[var(--text-primary)] mb-4">Остались вопросы?</h2>
+                    <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto">Наш менеджер свяжется с вами в ближайшее время для консультации.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+                        <input class="input w-full flex-grow py-3 px-4" placeholder="Ваш номер телефона" type="tel"/>
+                        <button class="button_primary py-3 px-6 font-bold flex-shrink-0">
+                            <span class="truncate">Перезвоните мне</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <div id="footer"></div>
+    </div>
+</div>
+<script src="js/includes_loader.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
