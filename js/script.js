@@ -39,44 +39,74 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleTheme() {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
     if (newTheme === 'dark') {
         document.documentElement.removeAttribute('data-theme');
     } else {
         document.documentElement.setAttribute('data-theme', newTheme);
     }
+
     localStorage.setItem('theme', newTheme);
-    updateToggleButton(newTheme);
+    
+    updateThemeUI(newTheme);
 }
 
-
-function updateToggleButton(theme) {
+function updateThemeUI(theme) {
     const isDark = theme !== 'light';
-    document.getElementById('theme-toggle').classList.toggle('dark', isDark);
+    const themeText = isDark ? 'тёмная' : 'светлая';
+    
+    const desktopToggle = document.getElementById('theme-toggle');
+    desktopToggle.setAttribute('aria-label', `Текущая тема: ${themeText}. Нажмите для переключения`);
     document.getElementById('sun-icon').classList.toggle('hidden', isDark);
     document.getElementById('moon-icon').classList.toggle('hidden', !isDark);
     
-    document.getElementById('mobile-theme-toggle').classList.toggle('dark', isDark);
+    const mobileToggle = document.getElementById('mobile-theme-toggle');
+    mobileToggle.setAttribute('aria-label', `Текущая тема: ${themeText}. Нажмите для переключения`);
     document.getElementById('mobile-sun-icon').classList.toggle('hidden', isDark);
     document.getElementById('mobile-moon-icon').classList.toggle('hidden', !isDark);
 }
 
 function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    updateToggleButton(savedTheme);
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let theme = 'dark'; 
+    if (savedTheme) {
+        theme = savedTheme;
+    } else if (!prefersDark) {
+        theme = 'light';
+    }
+    
+    if (theme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+    
+    updateThemeUI(theme);
 }
 
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
-
-window.addEventListener('DOMContentLoaded', initializeTheme);
-
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTheme();
+    
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
+    
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            initializeTheme();
+        }
+    });
+});
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
     });
 });
