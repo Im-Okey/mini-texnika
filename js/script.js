@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Закрытие меню при ресайзе
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 1024) {
                 mobileMenu.classList.remove('active');
@@ -37,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// Функция для установки темы
 function setTheme(themeName) {
     const root = document.documentElement;
     
@@ -51,7 +49,6 @@ function setTheme(themeName) {
     updateActiveThemeButton(themeName);
 }
 
-// Функция для обновления активной кнопки темы
 function updateActiveThemeButton(themeName) {
     document.querySelectorAll('.theme-toggle').forEach(button => {
         if (button.getAttribute('data-theme') === themeName) {
@@ -64,17 +61,14 @@ function updateActiveThemeButton(themeName) {
     });
 }
 
-// Инициализация темы при загрузке страницы
 function initTheme() {
     const savedTheme = localStorage.getItem('theme') || 'default';
     setTheme(savedTheme);
 }
 
-// Обработчики событий
 document.addEventListener('DOMContentLoaded', () => {
     initTheme();
     
-    // Для всех кнопок переключения темы
     document.querySelectorAll('.theme-toggle').forEach(button => {
         button.addEventListener('click', () => {
             const themeName = button.getAttribute('data-theme');

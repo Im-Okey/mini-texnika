@@ -3,122 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Аренда мини-техники — широкий выбор строительной техники по выгодным ценам. Гибкие условия аренды и профессиональный сервис.">
     <title>Аренда мини-техники</title>
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="css/theme.css" rel="stylesheet">
-    <style type="text/tailwindcss">
-        
-        body {
-            @apply bg-[var(--background-color)] text-[var(--text-primary)] font-sans;
-        }
-        
-        .button_primary {
-            @apply bg-[var(--primary-color)] text-[var(--button-text)] py-2 px-4 rounded-md hover:bg-[var(--primary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors;
-        }
-        
-        .button_secondary {
-            @apply bg-[var(--secondary-color)] text-[var(--primary-color)] py-2 px-4 rounded-md hover:bg-[var(--accent-color)] focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:ring-opacity-50 transition-colors;
-        }
-        
-        .input {
-            @apply bg-[var(--secondary-color)] border border-[var(--border-color)] rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent text-[var(--text-primary)] transition-colors;
-        }
-        
-        .card {
-            @apply bg-[var(--card-bg)] rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:shadow-[var(--shadow-color)] transition-all duration-300;
-        }
-        
-        .card-content {
-            @apply p-6;
-        }
-        
-        .card-title {
-            @apply text-xl font-semibold text-[var(--text-primary)] mb-2;
-        }
-        
-        .card-description {
-            @apply text-base text-[var(--text-secondary)];
-        }
-        
-        header {
-            @apply bg-[var(--header-bg)] shadow-sm;
-        }
-        
-        footer {
-            @apply bg-[var(--footer-bg)] border-t border-[var(--border-color)];
-        }
-        
-        .logo-bg {
-            @apply bg-[var(--logo-bg)] rounded-lg;
-        }
-        
-        .nav-link {
-            @apply text-base font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors;
-        }
-        
-        .feature-card {
-            @apply bg-[var(--card-bg)] rounded-lg shadow-md p-6;
-        }
-        
-        .feature-icon {
-            @apply h-8 w-8 text-[var(--primary-color)];
-        }
-        
-        .feature-title {
-            @apply text-lg font-semibold text-[var(--text-primary)];
-        }
-        
-        .feature-description {
-            @apply text-base text-[var(--text-secondary)];
-        }
-        
-
-        .hero-section {
-            @apply relative rounded-lg overflow-hidden min-h-[500px] flex flex-col items-start justify-end p-8 md:p-12;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDjwcSfUiZZ9UP4QmkLmyKuwiaEfWGfYmMNflgKZT6toLzAVq5JXPkhPRQYDPn7wdp9tLNT6YgwKBdwaCBaCSMBBKEPcLTA6zSCn0Wc_O4FPxnaRGwWFutfqPZugsRQNj4ATaMu_G0m0B7bwWRpSPSGyWRlDgehcyOnl-vNvQMFZ6qeKUVpoWO-cg9msaWThAdCRKSSlzrZPhMlxrw6tUmpJArreybNrqX_qDTSNGLT74MIpDQ-2QI-X0El5Vqtbe2kHPfXysqwBVaT");
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .hero-title {
-            @apply text-white text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4;
-        }
-        
-        .hero-description {
-            @apply text-white/90 text-lg md:text-xl font-normal leading-normal mb-8;
-        }
-        
-        .questions-section {
-            @apply bg-[var(--secondary-color)] py-16 px-8 rounded-lg;
-        }
-
-        .mobile-menu {
-            @apply fixed inset-0 z-40 bg-[var(--background-color)] transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto p-6 !important;
-        }
-        .mobile-menu.active {
-            @apply translate-x-0 !important;
-        }
-
-        .burger-btn {
-            @apply lg:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer;
-        }
-        .burger-line {
-            @apply w-6 h-0.5 bg-[var(--primary-color)] my-1 transition-all duration-300;
-        }
-        .burger-btn.active .burger-line:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .burger-btn.active .burger-line:nth-child(2) {
-            opacity: 0;
-        }
-        .burger-btn.active .burger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-        
-    </style>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link href="css/tailwind.output.css" rel="stylesheet" />
+    <link href="css/index-tilewind.css" rel="stylesheet" />
+    <link href="css/theme.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="img/icon.png" />
 </head>
 <body>
 <div class="relative flex size-full min-h-screen flex-col group/design-root overflow-x-hidden">
@@ -228,7 +123,7 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     <a class="card" href="excavator.html">
                         <div class="relative h-56">
-                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/excavator_main.jpg">
+                            <img loading="lazy" alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/excavator_main.jpg">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Мини-экскаватор</h3>
@@ -243,7 +138,7 @@
                     </a>
                     <a class="card" href="pogruzchik.html">
                         <div class="relative h-56">
-                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/pogruzchik_main.webp">
+                            <img loading="lazy" alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/pogruzchik_main.webp">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Мини-погрузчик</h3>
@@ -258,7 +153,7 @@
                     </a>
                     <a class="card" href="kran.html">
                         <div class="relative h-56">
-                            <img alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/kran_main.jpg">
+                            <img loading="lazy" alt="Мини-экскаватор" class="w-full h-full object-cover" src="./img/kran_main.jpg">
                         </div>
                         <div class="card-content">
                             <h3 class="card-title">Эвакуатор-манипулятор с краном</h3>
@@ -330,11 +225,13 @@
             </section>
         </main>
         
-        <div id="footer"></div>
+        <footer>
+            <div id="footer"></div>
+        </footer>
     </div>
 </div>
-<script src="js/includes_loader.js"></script>
-<script src="js/script.js"></script>
+<script src="js/includes_loader.js" defer></script>
+<script src="js/script.js" defer></script>
 
 </body>
 </html>
