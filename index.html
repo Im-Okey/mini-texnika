@@ -104,25 +104,27 @@
 
 
         <main class="container mx-auto px-4 py-8">
-            <section class="mb-16" id="katalog">
+            <section class="mb-16">
                 <div class="hero-section">
-                    <img src="./img/main.png" alt="Аренда строительной техники" 
-                        class="hero-image" loading="eager" decoding="sync">
+                    <img src="./img/main.webp" alt="Аренда строительной техники" 
+                        class="hero-image" fetchpriority="high" decoding="sync">
                     <div class="overlay"></div>
                     <div class="hero-content">
                         <h1 class="hero-title">Аренда <br> мини-техники</h1>
                         <p class="hero-description">
                             Широкий выбор мини-техники для любых задач. Гибкие условия аренды и выгодные цены.
                         </p>
-                        <button class="button_primary py-3 px-6 text-lg font-bold">
-                            <span class="truncate">Подобрать технику</span>
-                        </button>
+                        <a href="#katalog">
+                            <button class="button_primary py-3 px-6 text-lg font-bold">
+                                <span class="truncate">Подобрать технику</span>
+                            </button>
+                        </a>
                     </div>
                 </div>
             </section>
 
             
-            <section class="mb-16">
+            <section class="mb-16" id="katalog">
                 <h2 class="text-3xl font-bold text-center text-[var(--text-primary)] mb-12">Наша техника</h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <a class="card" href="excavator.html">
