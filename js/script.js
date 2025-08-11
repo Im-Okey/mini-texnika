@@ -36,46 +36,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-function setTheme(themeName) {
-    const root = document.documentElement;
-    
-    if (themeName === 'default') {
-        root.removeAttribute('data-theme');
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    if (newTheme === 'dark') {
+        document.documentElement.removeAttribute('data-theme');
     } else {
-        root.setAttribute('data-theme', themeName);
+        document.documentElement.setAttribute('data-theme', newTheme);
     }
+    localStorage.setItem('theme', newTheme);
+    updateToggleButton(newTheme);
+}
+
+
+function updateToggleButton(theme) {
+    const isDark = theme !== 'light';
+    document.getElementById('theme-toggle').classList.toggle('dark', isDark);
+    document.getElementById('sun-icon').classList.toggle('hidden', isDark);
+    document.getElementById('moon-icon').classList.toggle('hidden', !isDark);
     
-    localStorage.setItem('theme', themeName);
-    updateActiveThemeButton(themeName);
+    document.getElementById('mobile-theme-toggle').classList.toggle('dark', isDark);
+    document.getElementById('mobile-sun-icon').classList.toggle('hidden', isDark);
+    document.getElementById('mobile-moon-icon').classList.toggle('hidden', !isDark);
 }
 
-function updateActiveThemeButton(themeName) {
-    document.querySelectorAll('.theme-toggle').forEach(button => {
-        if (button.getAttribute('data-theme') === themeName) {
-            button.classList.add('ring-2', 'ring-offset-2', 'ring-[var(--primary-color)]');
-            button.classList.remove('ring-0');
-        } else {
-            button.classList.remove('ring-2', 'ring-offset-2', 'ring-[var(--primary-color)]');
-            button.classList.add('ring-0');
-        }
-    });
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateToggleButton(savedTheme);
 }
 
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'default';
-    setTheme(savedTheme);
-}
+document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+document.getElementById('mobile-theme-toggle').addEventListener('click', toggleTheme);
 
-document.addEventListener('DOMContentLoaded', () => {
-    initTheme();
-    
-    document.querySelectorAll('.theme-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-            const themeName = button.getAttribute('data-theme');
-            setTheme(themeName);
-        });
-    });
-});
+window.addEventListener('DOMContentLoaded', initializeTheme);
 
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
