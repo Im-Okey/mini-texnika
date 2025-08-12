@@ -278,18 +278,9 @@ footer {
     transform: translateX(2px);
 }
 
-@media (prefers-color-scheme: light) {
-    .hero-phone a {
-        color: black;
-    }
-    .hero-phone:hover a {
-        color: #d97706; 
-    }
-}
-
 @media (max-width: 640px) {
     .hero-phone a {
-        font-size: 1.125rem; /* Немного уменьшаем размер на мобильных */
+        font-size: 1.125rem; 
     }
 }
 
