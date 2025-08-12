@@ -260,6 +260,42 @@ footer {
     }
 }
 
+
+
+
+.hero-phone {
+    transition: all 0.2s ease;
+    color: white;
+    padding: 0.25rem 0;
+}
+
+.hero-phone a {
+    transition: all 0.2s ease;
+}
+
+.hero-phone:hover a {
+    color: #fbbf24; 
+    transform: translateX(2px);
+}
+
+@media (prefers-color-scheme: light) {
+    .hero-phone a {
+        color: black;
+    }
+    .hero-phone:hover a {
+        color: #d97706; 
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-phone a {
+        font-size: 1.125rem; /* Немного уменьшаем размер на мобильных */
+    }
+}
+
+
+
+
 .questions-section {
     background-color: var(--secondary-color);
     padding-top: 4rem; 
