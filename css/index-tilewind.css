@@ -263,19 +263,24 @@ footer {
 
 
 
-.hero-phone {
-    transition: all 0.2s ease;
-    color: white;
-    padding: 0.25rem 0;
+.hero-phone,
+.hero-phone a,
+.hero-phone a:hover {
+    color: white !important;
 }
 
-.hero-phone a {
-    transition: all 0.2s ease;
-}
 
 .hero-phone:hover a {
-    color: #fbbf24; 
+    color: #fbbf24 !important;
     transform: translateX(2px);
+}
+
+
+@media (prefers-color-scheme: light) {
+  .hero-phone,
+  .hero-phone a {
+    color: white !important;
+  }
 }
 
 @media (max-width: 640px) {
